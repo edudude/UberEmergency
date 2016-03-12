@@ -7,16 +7,52 @@
 //
 
 import UIKit
+import GoogleMaps
+import p2_OAuth2
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let uber_OAuth_Settings = [
+        "client_id": "znFbiCHIJPWm5f4x3_LS_pdyLRzn_Mgf",
+        "client_secret": "ZVkE1gz8pvB1mOgE6hjLuSHXAzBPX14XYAMSh6xm",
+        "authorize_uri": "https://login.uber.com/oauth/authorize",
+        "token_uri": "https://login.uber.com/oauth/token",
+        "scope": "profile request",
+        "contentType":    "multipart/form-data",
+        "redirect_uris": ["ubertest://oauth/callback"],   // don't forget to register this scheme
+        ] as OAuth2JSON
+    
 
+    var oauth:OAuth2CodeGrant!
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        GMSServices.provideAPIKey("AIzaSyCDsyTfU8ZablxHnA9x4nJHVUNOxeYWRVQ")
+        oauth = OAuth2CodeGrant(settings: uber_OAuth_Settings)
+        //oauth.viewTitle = "Uber Login Service"      // optional
+        oauth.verbose = true // For Logs
+        
+
         return true
+    }
+    
+    func application(application: UIApplication,
+        openURL url: NSURL,
+        sourceApplication: String?,
+        annotation: AnyObject?) -> Bool {
+            // you should probably first check if this is your URL being opened
+            print(url)
+            var splitUrl = url.absoluteString.componentsSeparatedByString(":")
+            
+            if splitUrl[0] == ("ubertest") {
+                
+                oauth.handleRedirectURL(url)
+            }
+            
+            return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
