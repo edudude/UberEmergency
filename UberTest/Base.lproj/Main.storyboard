@@ -89,6 +89,8 @@
                     <connections>
                         <outlet property="mainLabel" destination="7AG-iG-kTg" id="5iw-KM-vZD"/>
                         <outlet property="mapView" destination="Evo-i6-Y5i" id="Dgx-dk-dIT"/>
+                        <outlet property="orderButton" destination="zU4-Cr-Tft" id="47I-tJ-7EI"/>
+                        <outlet property="orderButtonCenter" destination="RTB-zw-QBN" id="ICl-Vt-16K"/>
                         <outlet property="secondaryLabel" destination="v85-vu-otE" id="gR7-IA-V7d"/>
                     </connections>
                 </viewController>

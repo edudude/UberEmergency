@@ -12,52 +12,194 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     var loc:CLLocationCoordinate2D?
     var uberHandler = UberHandler()
     
+    
+    @IBOutlet weak var orderButtonCenter: NSLayoutConstraint!
+    
+    @IBOutlet weak var orderButton: UIButton!
+    
     @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var mainLabel: UILabel!
     
     @IBOutlet weak var secondaryLabel: UILabel!
+ 
+    var simulator:NSTimer?
+    var uberOrdered = false
     
     @IBAction func onOrderUber(sender: UIButton) {
         
-        guard let currLoc = self.loc else { return }
-        
-        // Step 1: Get the product ID's of nearby Uber's
-        uberHandler.getProducts(atLat: currLoc.latitude, atLon: currLoc.longitude) { (response) in
-            if response != ""{
-                let productID = response
-                
-                // Step 2: Get nearest hospitals
-                self.getNearestHospital() { (result) in
-                    if let hospitalDic = result as? [String:AnyObject] {
-                        let name:String = hospitalDic["Name"] as! String
-                        let destinationLat:Double = hospitalDic["Lat"] as! Double
-                        let destinationLon:Double = hospitalDic["Lon"] as!  Double
+        if !uberOrdered{
+            guard let currLoc = self.loc else { return }
+            
+            // Step 1: Get the product ID's of nearby Uber's
+            uberHandler.getProducts(atLat: currLoc.latitude, atLon: currLoc.longitude) { (response) in
+                if response != ""{
+                    let productID = response
+                    
+                    // Step 2: Get nearest hospitals
+                    self.getNearestHospital() { (result) in
+                        if let hospitalDic = result as? [String:AnyObject] {
+                            let name:String = hospitalDic["Name"] as! String
+                            let destinationLat:Double = hospitalDic["Lat"] as! Double
+                            let destinationLon:Double = hospitalDic["Lon"] as!  Double
+                            print("Lat", destinationLat)
+                            print("Lon", destinationLon)
 
-                        // Step 3: Order Uber
-                        self.uberHandler.makeRequest(productID, startLat: currLoc.latitude, startLng: currLoc.longitude, endLat: destinationLat, endLng: destinationLon) { _ in
-                            
+                            // Step 3: Order Uber
+                            self.uberHandler.makeRequest(productID, startLat: currLoc.latitude, startLng: currLoc.longitude, endLat: destinationLat, endLng: destinationLon) { _ in
+                                
+                                
                                 let driver: [String: AnyObject] = self.uberHandler.createRandomDriver()
                                 print("DRIVER", driver)
                                 let name = driver["Name"] as! String
                                 let plate = driver["Plate"] as! String
                                 let eta = driver["ETA"] as! Int
-                            
+                                
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.mainLabel.text = "\(name) is on their way!"
                                     self.secondaryLabel.text = "Plate Numer: \(plate)\n ETA: \(eta) mins"
+                                    
+                                    self.uberLat = self.loc!.latitude + 0.1
+                                    self.uberLon = self.loc!.longitude + 0.1
+                                    
+                                    NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "enlargeMapView", userInfo: nil, repeats: false)
+                                    
+                                    self.simulator = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "simulateUberOnMap", userInfo: nil, repeats: true)
+
+
+                                }
+                                self.uberOrdered = true
+                                
                             }
-                            
                         }
                     }
                     
-                   
                 }
-                
             }
+
         }
+        else{
+            
+            if orderButton.selected{
+                // Button is at bottom. Bring it back up.
+                self.resetMapView()
+            }
+            else{
+                self.enlargeMapView()
+            }
+            
+            
+        }
+        
     }
     
+    
+ 
+      
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        mapView.delegate = self
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        var accessToken = uberHandler.authorizeUser()
+
+        setupNavBar()
+    }
+    
+    func setupNavBar(){
+        let logoView = UIImageView(frame: CGRectMake(0, 0, 30, 30))
+        logoView.image = UIImage(named: "Logo")
+        logoView.frame.origin.x = (self.view.frame.size.width - logoView.frame.size.width) / 2
+        logoView.frame.origin.y = 25
+        
+        self.navigationController?.view.addSubview(logoView)
+        
+        self.navigationController?.view.bringSubviewToFront(logoView)
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.9451, green: 0.4196, blue: 0.4353, alpha: 1.0)
+
+    }
+    
+
+    var cameraSet = false
+    
+    // MARK: - Location Manager
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locationArr = locations as NSArray
+        let locationObj = locationArr.lastObject as! CLLocation
+        let coordinate = locationObj.coordinate
+        self.loc = coordinate
+        
+        if cameraSet == false{
+            self.mapView.camera = GMSCameraPosition(target: (coordinate), zoom: 12, bearing: 0, viewingAngle: 0)
+            cameraSet = true
+        }
+        self.mapView.myLocationEnabled = true
+        
+
+    }
+    
+    var uberLat = 0.0
+    var uberLon = 0.0
+    
+    func simulateUberOnMap(){
+       
+        if uberLat > loc!.latitude && uberLon > loc!.longitude{
+            let marker = GMSMarker()
+            self.mapView.clear()
+            marker.position = CLLocationCoordinate2D(latitude: uberLat, longitude: uberLon)
+            marker.map = self.mapView
+            
+           // self.mapView.camera = GMSCameraPosition(target: (self.loc!), zoom: 9, bearing: 0, viewingAngle: 0)
+            var southWest = CLLocationCoordinate2DMake(loc!.latitude - 0.02,loc!.longitude - 0.02)
+            var northEast = CLLocationCoordinate2DMake(uberLat + 0.02,uberLon + 0.02)
+            var bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+            var camera = mapView.cameraForBounds(bounds, insets:UIEdgeInsetsZero)
+            self.mapView.camera = camera!
+            
+            uberLat -= 0.001
+            uberLon -= 0.001
+
+        }
+        else{
+            self.simulator?.invalidate()
+        }
+        
+    }
+    
+    func enlargeMapView(){
+
+        self.orderButton.selected = true
+        self.orderButton.setImage(UIImage(named: "Up"), forState: .Selected)
+        
+        UIView.animateWithDuration(3.0, animations: {
+            self.mainLabel.alpha = 0
+            self.secondaryLabel.alpha = 0
+            self.orderButtonCenter.constant += self.view.frame.height / 2
+            self.view.layoutIfNeeded()
+
+        })
+    }
+    
+    func resetMapView(){
+        self.orderButton.selected = false
+        self.orderButton.setImage(UIImage(named: "Down"), forState: .Normal)
+        
+        UIView.animateWithDuration(3.0, animations: {
+            self.mainLabel.alpha = 1
+            self.secondaryLabel.alpha = 1
+            self.orderButtonCenter.constant = 0
+            self.view.layoutIfNeeded()
+            
+        })
+    }
     
     func getNearestHospital(completion: (([String : AnyObject]) -> Void)){
         
@@ -108,53 +250,5 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     
     
     
-      
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        mapView.delegate = self
-        
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        var accessToken = uberHandler.authorizeUser()
-      //  uberHandler.getProducts()
-
-        setupNavBar()
-    }
-    
-    func setupNavBar(){
-        let logoView = UIImageView(frame: CGRectMake(0, 0, 30, 30))
-        logoView.image = UIImage(named: "Logo")
-        logoView.frame.origin.x = (self.view.frame.size.width - logoView.frame.size.width) / 2
-        logoView.frame.origin.y = 25
-        
-        self.navigationController?.view.addSubview(logoView)
-        
-        self.navigationController?.view.bringSubviewToFront(logoView)
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.9451, green: 0.4196, blue: 0.4353, alpha: 1.0)
-
-    }
-    
-
-    
-    // MARK: - Location Manager
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locationArr = locations as NSArray
-        let locationObj = locationArr.lastObject as! CLLocation
-        let coordinate = locationObj.coordinate
-        self.loc = coordinate
-        
-        
-        self.mapView.camera = GMSCameraPosition(target: (coordinate), zoom: 12, bearing: 0, viewingAngle: 0)
-        self.mapView.myLocationEnabled = true
-        
-
-    }
     
 }

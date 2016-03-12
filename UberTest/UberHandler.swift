@@ -172,9 +172,11 @@ class UberHandler {
             "JYM 1926",
             "275 4693"]
         
-        let eta = Int(arc4random_uniform(8) + 3)
+        let eta = Int(arc4random_uniform(8) + 1)
         
-        let index = Int(arc4random_uniform(10) + 1)
+        let index = Int(arc4random_uniform(9) + 1)
+        print("Index",index)
+
         let driverName = names[index]
         let driverPlate = plates[index]
         
