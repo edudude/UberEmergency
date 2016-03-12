@@ -1,0 +1,16 @@
+PODS:
+  - GoogleMaps (1.12.3)
+  - p2.OAuth2 (2.2.1):
+    - SwiftKeychain (~> 0.1.5)
+  - SwiftKeychain (0.1.5)
+
+DEPENDENCIES:
+  - GoogleMaps
+  - p2.OAuth2
+
+SPEC CHECKSUMS:
+  GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
+  p2.OAuth2: 7f5c44259ef83ea5b9ef8f9049310611788f86cb
+  SwiftKeychain: 1387edad8b56c659daa93d9ffc99526bac5b0088
+
+COCOAPODS: 0.39.0
