@@ -23,7 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        GMSServices.provideAPIKey("AIzaSyCDsyTfU8ZablxHnA9x4nJHVUNOxeYWRVQ")
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        navigationBarAppearace.tintColor = UIColor.whiteColor()
+
+        GMSServices.provideAPIKey("AIzaSyDp3lbh3B4McdPT-rgS8UYJb0w9UXN0Sj0")
         oauth = OAuth2CodeGrant(settings: uber_OAuth_Settings)
         //oauth.viewTitle = "Uber Login Service"      // optional
         oauth.verbose = true // For Logs
