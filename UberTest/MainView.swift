@@ -124,9 +124,22 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         self.navigationController?.view.bringSubviewToFront(logoView)
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.9451, green: 0.4196, blue: 0.4353, alpha: 1.0)
+        
 
+        // Setup mic button
+        let micButton = UIButton()
+        micButton.setImage(UIImage(named: "Mic"), forState: .Normal)
+        micButton.frame = CGRectMake(0, 0, 30, 30)
+        micButton.addTarget(self, action: "onMicPress", forControlEvents: .TouchUpInside)
+        
+        let micBarButton = UIBarButtonItem()
+        micBarButton.customView = micButton
+        self.navigationItem.rightBarButtonItem = micBarButton
     }
     
+    func onMicPress(){
+        self.performSegueWithIdentifier("ShowInfoPage", sender: self)
+    }
 
     var cameraSet = false
     
@@ -158,10 +171,10 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
             marker.map = self.mapView
             
            // self.mapView.camera = GMSCameraPosition(target: (self.loc!), zoom: 9, bearing: 0, viewingAngle: 0)
-            var southWest = CLLocationCoordinate2DMake(loc!.latitude - 0.02,loc!.longitude - 0.02)
-            var northEast = CLLocationCoordinate2DMake(uberLat + 0.02,uberLon + 0.02)
-            var bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-            var camera = mapView.cameraForBounds(bounds, insets:UIEdgeInsetsZero)
+            let southWest = CLLocationCoordinate2DMake(loc!.latitude - 0.02,loc!.longitude - 0.02)
+            let northEast = CLLocationCoordinate2DMake(uberLat + 0.02,uberLon + 0.02)
+            let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+            let camera = mapView.cameraForBounds(bounds, insets:UIEdgeInsetsZero)
             self.mapView.camera = camera!
             
             uberLat -= 0.001
@@ -203,11 +216,11 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     
     func getNearestHospital(completion: (([String : AnyObject]) -> Void)){
         
-        var key = "AIzaSyDp3lbh3B4McdPT-rgS8UYJb0w9UXN0Sj0"
+        let key = "AIzaSyDp3lbh3B4McdPT-rgS8UYJb0w9UXN0Sj0"
         let lat = loc!.latitude
         let lon = loc!.longitude
         
-        var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(key)&location=\(lat),\(lon)&radius=\(5000)&rankby=prominence&keyword=hospital&sensor=true"
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(key)&location=\(lat),\(lon)&radius=\(5000)&rankby=prominence&keyword=hospital&sensor=true"
         
         let url = NSURL(string: urlString)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!){ data, response, error in

@@ -61,7 +61,7 @@ class UberHandler {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
         
-        guard let endpoint = NSURL(string: urlPath) else { print("Error creating endpoint");return }
+        //guard let endpoint = NSURL(string: urlPath) else { print("Error creating endpoint");return }
         
         let request = appDelegate.oauth.request(forURL: NSURL(string:urlPath)!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
@@ -99,7 +99,7 @@ class UberHandler {
     
     func getProducts(atLat lat: Double, atLon lon: Double, completion: ((
         String) -> Void)){
-        var urlPath = "https://api.uber.com/v1/products?latitude=\(lat)&longitude=\(lon)"
+        let urlPath = "https://api.uber.com/v1/products?latitude=\(lat)&longitude=\(lon)"
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()

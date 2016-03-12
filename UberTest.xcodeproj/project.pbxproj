@@ -10,6 +10,13 @@
 		295E12AE1C93C1A6002E58F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12AD1C93C1A6002E58F0 /* MainView.swift */; };
 		295E12B01C93D1DF002E58F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12AF1C93D1DE002E58F0 /* SwiftyJSON.swift */; };
 		295E12B21C93D5C0002E58F0 /* UberHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12B11C93D5C0002E58F0 /* UberHandler.swift */; };
+		295E12B61C9465AC002E58F0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E12B51C9465AC002E58F0 /* AudioToolbox.framework */; };
+		295E12B81C9465B0002E58F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E12B71C9465B0002E58F0 /* AVFoundation.framework */; };
+		295E12BC1C9465FC002E58F0 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 295E12B91C9465FC002E58F0 /* AcousticModelEnglish.bundle */; };
+		295E12BD1C9465FC002E58F0 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E12BA1C9465FC002E58F0 /* OpenEars.framework */; };
+		295E12BE1C9465FC002E58F0 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E12BB1C9465FC002E58F0 /* Slt.framework */; };
+		295E12C31C946BEB002E58F0 /* SpeechHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12C21C946BEB002E58F0 /* SpeechHandler.swift */; };
+		295E12C61C947268002E58F0 /* GetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12C51C947268002E58F0 /* GetInfoView.swift */; };
 		297739341C8A904A0085E500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297739331C8A904A0085E500 /* AppDelegate.swift */; };
 		297739391C8A904A0085E500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297739371C8A904A0085E500 /* Main.storyboard */; };
 		2977393B1C8A904A0085E500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2977393A1C8A904A0085E500 /* Assets.xcassets */; };
@@ -21,6 +28,14 @@
 		295E12AD1C93C1A6002E58F0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		295E12AF1C93D1DE002E58F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		295E12B11C93D5C0002E58F0 /* UberHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UberHandler.swift; sourceTree = "<group>"; };
+		295E12B51C9465AC002E58F0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		295E12B71C9465B0002E58F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		295E12B91C9465FC002E58F0 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		295E12BA1C9465FC002E58F0 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		295E12BB1C9465FC002E58F0 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		295E12C11C946B7B002E58F0 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		295E12C21C946BEB002E58F0 /* SpeechHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechHandler.swift; sourceTree = "<group>"; };
+		295E12C51C947268002E58F0 /* GetInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetInfoView.swift; sourceTree = "<group>"; };
 		297739301C8A904A0085E500 /* UberTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		297739331C8A904A0085E500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		297739381C8A904A0085E500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,7 +52,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295E12BE1C9465FC002E58F0 /* Slt.framework in Frameworks */,
+				295E12B81C9465B0002E58F0 /* AVFoundation.framework in Frameworks */,
+				295E12B61C9465AC002E58F0 /* AudioToolbox.framework in Frameworks */,
 				AE8BD174EE8056B6F898F5A5 /* Pods_UberTest.framework in Frameworks */,
+				295E12BD1C9465FC002E58F0 /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,10 +93,13 @@
 		297739321C8A904A0085E500 /* UberTest */ = {
 			isa = PBXGroup;
 			children = (
+				295E12C11C946B7B002E58F0 /* Bridging-Header.h */,
 				295E12AF1C93D1DE002E58F0 /* SwiftyJSON.swift */,
 				297739331C8A904A0085E500 /* AppDelegate.swift */,
 				295E12B11C93D5C0002E58F0 /* UberHandler.swift */,
 				295E12AD1C93C1A6002E58F0 /* MainView.swift */,
+				295E12C51C947268002E58F0 /* GetInfoView.swift */,
+				295E12C21C946BEB002E58F0 /* SpeechHandler.swift */,
 				297739371C8A904A0085E500 /* Main.storyboard */,
 				2977393A1C8A904A0085E500 /* Assets.xcassets */,
 				2977393C1C8A904A0085E500 /* LaunchScreen.storyboard */,
@@ -89,6 +111,11 @@
 		7C4AB7C9C8991264C0C30322 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				295E12B91C9465FC002E58F0 /* AcousticModelEnglish.bundle */,
+				295E12BA1C9465FC002E58F0 /* OpenEars.framework */,
+				295E12BB1C9465FC002E58F0 /* Slt.framework */,
+				295E12B71C9465B0002E58F0 /* AVFoundation.framework */,
+				295E12B51C9465AC002E58F0 /* AudioToolbox.framework */,
 				582932EA3BE1D70906DEA1D0 /* Pods_UberTest.framework */,
 			);
 			name = Frameworks;
@@ -156,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2977393E1C8A904A0085E500 /* LaunchScreen.storyboard in Resources */,
+				295E12BC1C9465FC002E58F0 /* AcousticModelEnglish.bundle in Resources */,
 				2977393B1C8A904A0085E500 /* Assets.xcassets in Resources */,
 				297739391C8A904A0085E500 /* Main.storyboard in Resources */,
 			);
@@ -219,6 +247,8 @@
 				295E12B21C93D5C0002E58F0 /* UberHandler.swift in Sources */,
 				295E12B01C93D1DF002E58F0 /* SwiftyJSON.swift in Sources */,
 				297739341C8A904A0085E500 /* AppDelegate.swift in Sources */,
+				295E12C61C947268002E58F0 /* GetInfoView.swift in Sources */,
+				295E12C31C946BEB002E58F0 /* SpeechHandler.swift in Sources */,
 				295E12AE1C93C1A6002E58F0 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,10 +361,15 @@
 			baseConfigurationReference = 490FAA60E8B490CC27A388CF /* Pods-UberTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = UberTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KyleHaptonstall.UberTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./UberTest/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -343,10 +378,15 @@
 			baseConfigurationReference = 5D987C0D54BCEFCAEFFA4B34 /* Pods-UberTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = UberTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KyleHaptonstall.UberTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./UberTest/Bridging-Header.h";
 			};
 			name = Release;
 		};
