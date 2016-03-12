@@ -1,6 +1,8 @@
 
 #import <OpenEars/OELanguageModelGenerator.h>
+
 #import <OpenEars/OEAcousticModel.h>
+#import <RejectoDemo/OELanguageModelGenerator+Rejecto.h>
 #import <OpenEars/OEPocketsphinxController.h>
 #import <OpenEars/OEEventsObserver.h>
 #import <OpenEars/OELogging.h>

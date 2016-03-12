@@ -108,7 +108,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        var accessToken = uberHandler.authorizeUser()
+     //   var accessToken = uberHandler.authorizeUser()
 
         setupNavBar()
     }

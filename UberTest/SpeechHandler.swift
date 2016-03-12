@@ -24,7 +24,9 @@ class SpeechHandler: NSObject, OEEventsObserverDelegate{
         addWords()
         
         var name = "UberEmergencyModel"
-        lmGenerator.generateLanguageModelFromArray(words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+       // lmGenerator.generateLanguageModelFromArray(words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+        
+        lmGenerator.generateRejectingLanguageModelFromArray(words, withFilesNamed: name, withOptionalExclusions: nil, usingVowelsOnly: false, withWeight: nil, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
         
         lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
         dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)

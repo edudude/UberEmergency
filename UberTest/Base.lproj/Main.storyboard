@@ -47,6 +47,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-jq-yz0">
+                                <rect key="frame" x="237.5" y="436" width="125" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="CX0-Ec-XcN"/>
+                                    <constraint firstAttribute="width" constant="125" id="pIO-yr-1IE"/>
+                                </constraints>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODA-M7-yzt">
                                 <rect key="frame" x="250" y="456" width="100" height="100"/>
                                 <constraints>
@@ -96,6 +103,7 @@
                             <constraint firstItem="Iyf-kH-OjH" firstAttribute="leading" secondItem="4Xh-tM-j22" secondAttribute="leadingMargin" id="0Lx-qc-dKc"/>
                             <constraint firstItem="ODA-M7-yzt" firstAttribute="top" secondItem="jzb-ec-wYG" secondAttribute="bottom" constant="3" id="0T1-Xk-aWT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jzb-ec-wYG" secondAttribute="trailing" id="0oM-Re-qtK"/>
+                            <constraint firstItem="svl-jg-80S" firstAttribute="top" secondItem="BKY-jq-yz0" secondAttribute="bottom" constant="-25" id="2RI-rM-1oF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hh0-xu-cFQ" secondAttribute="trailing" id="44w-cD-VEp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HSV-G7-cPa" secondAttribute="trailing" constant="-20" id="AVC-jM-qpC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="boV-Mc-8S3" secondAttribute="trailing" id="BlF-hO-2Iz"/>
@@ -103,12 +111,14 @@
                             <constraint firstItem="jzb-ec-wYG" firstAttribute="leading" secondItem="4Xh-tM-j22" secondAttribute="leadingMargin" id="Fqo-Ve-dIP"/>
                             <constraint firstItem="boV-Mc-8S3" firstAttribute="leading" secondItem="4Xh-tM-j22" secondAttribute="leadingMargin" id="TY3-4P-vbT"/>
                             <constraint firstItem="Iyf-kH-OjH" firstAttribute="top" secondItem="boV-Mc-8S3" secondAttribute="bottom" constant="15" id="Tc9-YE-ztv"/>
+                            <constraint firstItem="BKY-jq-yz0" firstAttribute="centerX" secondItem="4Xh-tM-j22" secondAttribute="centerX" id="Tma-Le-fzl"/>
                             <constraint firstItem="HSV-G7-cPa" firstAttribute="leading" secondItem="4Xh-tM-j22" secondAttribute="leadingMargin" constant="-20" id="U3g-V3-pZg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ekh-KO-FhV" secondAttribute="trailing" id="V6W-k0-TQW"/>
                             <constraint firstItem="YQz-vF-inr" firstAttribute="leading" secondItem="4Xh-tM-j22" secondAttribute="leadingMargin" id="bHd-S8-x2X"/>
                             <constraint firstItem="HSV-G7-cPa" firstAttribute="top" secondItem="49a-yP-aKg" secondAttribute="bottom" constant="20" id="bsD-ax-7nX"/>
                             <constraint firstItem="jzb-ec-wYG" firstAttribute="top" secondItem="YQz-vF-inr" secondAttribute="bottom" constant="15" id="h0I-MG-TNc"/>
                             <constraint firstItem="49a-yP-aKg" firstAttribute="trailing" secondItem="4Xh-tM-j22" secondAttribute="trailingMargin" id="hHg-uG-hwf"/>
+                            <constraint firstItem="ekh-KO-FhV" firstAttribute="top" secondItem="BKY-jq-yz0" secondAttribute="bottom" constant="-20" id="hK0-em-hm2"/>
                             <constraint firstItem="Hh0-xu-cFQ" firstAttribute="top" secondItem="DcT-KD-gat" secondAttribute="bottom" constant="50" id="i5o-G7-15q"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ODA-M7-yzt" secondAttribute="bottom" constant="-20" id="ik2-0V-RS8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Iyf-kH-OjH" secondAttribute="trailing" id="mZl-An-Q8x"/>
@@ -121,11 +131,18 @@
                             <constraint firstItem="Hh0-xu-cFQ" firstAttribute="leading" secondItem="4Xh-tM-j22" secondAttribute="leadingMargin" id="z2T-dT-3I8"/>
                             <constraint firstItem="svl-jg-80S" firstAttribute="top" secondItem="HSV-G7-cPa" secondAttribute="bottom" id="zEL-bD-qrP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hK0-em-hm2"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="allergiesTextField" destination="ekh-KO-FhV" id="pGJ-1t-2gg"/>
                         <outlet property="birthdayTextField" destination="Iyf-kH-OjH" id="XMP-Zi-1hY"/>
+                        <outlet property="buttonBackground" destination="BKY-jq-yz0" id="ecu-GG-lsY"/>
                         <outlet property="medicationsTextField" destination="YQz-vF-inr" id="8HD-hY-pxi"/>
+                        <outlet property="micButton" destination="ODA-M7-yzt" id="tHg-xR-7AK"/>
                         <outlet property="nameTextField" destination="boV-Mc-8S3" id="6cN-EJ-epV"/>
                     </connections>
                 </viewController>
