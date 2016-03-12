@@ -71,11 +71,11 @@
 			isa = PBXGroup;
 			children = (
 				297739331C8A904A0085E500 /* AppDelegate.swift */,
+				295E12AD1C93C1A6002E58F0 /* MainView.swift */,
 				297739371C8A904A0085E500 /* Main.storyboard */,
 				2977393A1C8A904A0085E500 /* Assets.xcassets */,
 				2977393C1C8A904A0085E500 /* LaunchScreen.storyboard */,
 				2977393F1C8A904A0085E500 /* Info.plist */,
-				295E12AD1C93C1A6002E58F0 /* MainView.swift */,
 			);
 			path = UberTest;
 			sourceTree = "<group>";

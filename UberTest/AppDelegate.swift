@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  UberTest
-//
-//  Created by Kyle Haptonstall on 3/4/16.
-//  Copyright © 2016 Kyle Haptonstall. All rights reserved.
-//
 
 import UIKit
 import GoogleMaps

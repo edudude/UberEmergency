@@ -1,10 +1,3 @@
-//
-//  MainView.swift
-//  UberTest
-//
-//  Created by Kyle Haptonstall on 3/11/16.
-//  Copyright © 2016 Kyle Haptonstall. All rights reserved.
-//
 
 import UIKit
 import p2_OAuth2
@@ -21,7 +14,7 @@ class MainView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Loaded")
         do{
             let url = try appDelegate.oauth.authorizeURL()
             UIApplication.sharedApplication().openURL(url)
