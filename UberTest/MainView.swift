@@ -9,7 +9,7 @@
 import UIKit
 import p2_OAuth2
 
-class ViewController: UIViewController {
+class MainView: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var access_token:String?
     
