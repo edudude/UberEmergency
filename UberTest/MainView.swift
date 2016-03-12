@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  MainView.swift
 //  UberTest
 //
-//  Created by Kyle Haptonstall on 3/4/16.
+//  Created by Kyle Haptonstall on 3/11/16.
 //  Copyright © 2016 Kyle Haptonstall. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import p2_OAuth2
 class ViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var access_token:String?
-
+    
     @IBAction func onTestAPICall(sender: AnyObject) {
         makeRequest()
     }
@@ -21,15 +21,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
         do{
             let url = try appDelegate.oauth.authorizeURL()
             UIApplication.sharedApplication().openURL(url)
             appDelegate.oauth.onAuthorize = { parameters in
-              //  print("Did authorize with parameters: \(parameters)")
+                //  print("Did authorize with parameters: \(parameters)")
                 self.access_token = parameters["access_token"] as! String
                 print(parameters["access_token"] )
-           
+                
                 
             }
             appDelegate.oauth.onFailure = { error in        // `error` is nil on cancel
@@ -37,14 +37,14 @@ class ViewController: UIViewController {
                     print("Authorization went wrong: \(error!)")
                 }
             }
-
+            
         }
         catch{
             
         }
-      
+        
     }
-
+    
     
     func makeRequest(){
         let params:[String: AnyObject] = [
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
             "start_longitude" : -157.8086632,
             "end_latitude" : 21.7088621,
             "end_longitude" : -157.8086632]
-
+        
         
         let urlPath = "https://sandbox-api.uber.com/v1/requests"
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
