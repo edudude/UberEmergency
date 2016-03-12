@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class GetInfoView: UIViewController, UITextFieldDelegate{
+class GetInfoView: UIViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate{
     
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -89,19 +90,28 @@ class GetInfoView: UIViewController, UITextFieldDelegate{
         birthdayTextField.inputView = dummyView
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("heardSpeech"), name: "NotificationIdentifier", object: nil)
-
-        
-       
     }
     
     func heardSpeech(){
-        var text = speechHandler.heardText.lowercaseString
+        let text = speechHandler.heardText.lowercaseString
         print("Got speech", text)
         if text.containsString("next"){
             self.switchTextField()
         }
         else if text.containsString("send"){
-            print("Sending")
+            
+            let name = self.nameTextField.text == "" ? "N/A" : self.nameTextField.text
+            let birthday = self.birthdayTextField.text == "" ? "N/A" : self.birthdayTextField.text
+            let allergies = self.allergiesTextField.text == "" ? "None" : self.allergiesTextField.text
+            let meds = self.medicationsTextField.text == "" ? "None" : self.medicationsTextField.text
+
+            let mailComposeViewController = configuredMailComposeViewController(name!, birthday: birthday!, allergies: allergies!, meds: meds!)
+            
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            } else {
+                self.showSendMailErrorAlert()
+            }
         }
         else if text != ""{
             switch textFieldIndex{
@@ -119,6 +129,8 @@ class GetInfoView: UIViewController, UITextFieldDelegate{
             
         }
     }
+    
+    
     
     func switchTextField(){
         textFieldIndex += 1
@@ -138,7 +150,29 @@ class GetInfoView: UIViewController, UITextFieldDelegate{
         }
     }
     
+    func configuredMailComposeViewController(name: String, birthday: String, allergies: String, meds: String) -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["khaptonstall93@gmail.com"])
+        mailComposerVC.setSubject("Incoming Patient Info")
+        mailComposerVC.setMessageBody(
+            "Patient Name: \(name)\n Birthday: \(birthday)\n Allergies: \(allergies)\n Medications: \(meds)", isHTML: false)
+        
+        return mailComposerVC
+    }
     
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     
     
 }
