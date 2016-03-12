@@ -18,6 +18,7 @@
 		295E12C31C946BEB002E58F0 /* SpeechHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12C21C946BEB002E58F0 /* SpeechHandler.swift */; };
 		295E12C61C947268002E58F0 /* GetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12C51C947268002E58F0 /* GetInfoView.swift */; };
 		295E12C91C948E0F002E58F0 /* RejectoDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E12C81C948E0F002E58F0 /* RejectoDemo.framework */; };
+		295E12CC1C94D2CD002E58F0 /* DriverArrivedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E12CB1C94D2CD002E58F0 /* DriverArrivedView.swift */; };
 		297739341C8A904A0085E500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297739331C8A904A0085E500 /* AppDelegate.swift */; };
 		297739391C8A904A0085E500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297739371C8A904A0085E500 /* Main.storyboard */; };
 		2977393B1C8A904A0085E500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2977393A1C8A904A0085E500 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		295E12C21C946BEB002E58F0 /* SpeechHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechHandler.swift; sourceTree = "<group>"; };
 		295E12C51C947268002E58F0 /* GetInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetInfoView.swift; sourceTree = "<group>"; };
 		295E12C81C948E0F002E58F0 /* RejectoDemo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RejectoDemo.framework; sourceTree = "<group>"; };
+		295E12CB1C94D2CD002E58F0 /* DriverArrivedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverArrivedView.swift; sourceTree = "<group>"; };
 		297739301C8A904A0085E500 /* UberTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		297739331C8A904A0085E500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		297739381C8A904A0085E500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				297739331C8A904A0085E500 /* AppDelegate.swift */,
 				295E12B11C93D5C0002E58F0 /* UberHandler.swift */,
 				295E12AD1C93C1A6002E58F0 /* MainView.swift */,
+				295E12CB1C94D2CD002E58F0 /* DriverArrivedView.swift */,
 				295E12C51C947268002E58F0 /* GetInfoView.swift */,
 				295E12C21C946BEB002E58F0 /* SpeechHandler.swift */,
 				297739371C8A904A0085E500 /* Main.storyboard */,
@@ -253,6 +256,7 @@
 				297739341C8A904A0085E500 /* AppDelegate.swift in Sources */,
 				295E12C61C947268002E58F0 /* GetInfoView.swift in Sources */,
 				295E12C31C946BEB002E58F0 /* SpeechHandler.swift in Sources */,
+				295E12CC1C94D2CD002E58F0 /* DriverArrivedView.swift in Sources */,
 				295E12AE1C93C1A6002E58F0 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

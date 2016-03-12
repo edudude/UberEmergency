@@ -60,6 +60,14 @@ class SpeechHandler: NSObject, OEEventsObserverDelegate{
         words.append("CRESTOR")
         words.append("ACTOS")
         words.append("HYDROCODONE")
+        
+        // Add allergy names
+        words.append("PEANUTS")
+        words.append("POLLEN")
+        words.append("GRASS")
+        words.append("WHEAT")
+        words.append("DOGS")
+        words.append("CASTS")
      
         // Add days
         words.append("SUNDAY")
@@ -92,6 +100,15 @@ class SpeechHandler: NSObject, OEEventsObserverDelegate{
         words.append("FIFTH")
         words.append("SIXTH")
         words.append("SEVENTH")
+        
+        // Add names
+        words.append("KYLE")
+        words.append("BILLY")
+        words.append("JOE")
+        words.append("KATY")
+        words.append("PAUL")
+        words.append("NANCY")
+        words.append("KATELYN")
     }
     
 

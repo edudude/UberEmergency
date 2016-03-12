@@ -27,40 +27,45 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     var uberOrdered = false
     
     @IBAction func onOrderUber(sender: UIButton) {
+        locationManager.stopUpdatingLocation()
         
         if !uberOrdered{
             guard let currLoc = self.loc else { return }
-            
+
             // Step 1: Get the product ID's of nearby Uber's
             uberHandler.getProducts(atLat: currLoc.latitude, atLon: currLoc.longitude) { (response) in
                 if response != ""{
                     let productID = response
-                    
+
                     // Step 2: Get nearest hospitals
                     self.getNearestHospital() { (result) in
                         if let hospitalDic = result as? [String:AnyObject] {
-                            let name:String = hospitalDic["Name"] as! String
+                            let hospitalName:String = hospitalDic["Name"] as! String
                             let destinationLat:Double = hospitalDic["Lat"] as! Double
                             let destinationLon:Double = hospitalDic["Lon"] as!  Double
-                            print("Lat", destinationLat)
-                            print("Lon", destinationLon)
+                            
+                            let marker = GMSMarker()
+                            marker.icon = UIImage(named: "Hospital")
+                            marker.title = hospitalName
+                            marker.position = CLLocationCoordinate2D(latitude: destinationLat, longitude: destinationLon)
+                            marker.map = self.mapView
+                            
 
                             // Step 3: Order Uber
                             self.uberHandler.makeRequest(productID, startLat: currLoc.latitude, startLng: currLoc.longitude, endLat: destinationLat, endLng: destinationLon) { _ in
                                 
                                 
                                 let driver: [String: AnyObject] = self.uberHandler.createRandomDriver()
-                                print("DRIVER", driver)
                                 let name = driver["Name"] as! String
                                 let plate = driver["Plate"] as! String
                                 let eta = driver["ETA"] as! Int
                                 
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.mainLabel.text = "\(name) is on their way!"
-                                    self.secondaryLabel.text = "Plate Numer: \(plate)\n ETA: \(eta) mins"
+                                    self.secondaryLabel.text = "\(hospitalName)\n Plate Numer: \(plate)\n ETA: \(eta) mins"
                                     
-                                    self.uberLat = self.loc!.latitude + 0.1
-                                    self.uberLon = self.loc!.longitude + 0.1
+                                    self.uberLat = self.loc!.latitude + 0.01
+                                    self.uberLon = self.loc!.longitude + 0.01
                                     
                                     NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "enlargeMapView", userInfo: nil, repeats: false)
                                     
@@ -108,7 +113,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-     //   var accessToken = uberHandler.authorizeUser()
+        var accessToken = uberHandler.authorizeUser()
 
         setupNavBar()
     }
@@ -161,16 +166,17 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     
     var uberLat = 0.0
     var uberLon = 0.0
+    var driver = GMSMarker()
     
     func simulateUberOnMap(){
        
         if uberLat > loc!.latitude && uberLon > loc!.longitude{
-            let marker = GMSMarker()
-            self.mapView.clear()
-            marker.position = CLLocationCoordinate2D(latitude: uberLat, longitude: uberLon)
-            marker.map = self.mapView
+            driver.map = nil
+            driver.icon = UIImage(named: "Logo")
             
-           // self.mapView.camera = GMSCameraPosition(target: (self.loc!), zoom: 9, bearing: 0, viewingAngle: 0)
+            driver.position = CLLocationCoordinate2D(latitude: uberLat, longitude: uberLon)
+            driver.map = self.mapView
+            
             let southWest = CLLocationCoordinate2DMake(loc!.latitude - 0.02,loc!.longitude - 0.02)
             let northEast = CLLocationCoordinate2DMake(uberLat + 0.02,uberLon + 0.02)
             let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
@@ -183,6 +189,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         }
         else{
             self.simulator?.invalidate()
+            displayDriverArrived()
         }
         
     }
@@ -191,10 +198,10 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
 
         self.orderButton.selected = true
         self.orderButton.setImage(UIImage(named: "Up"), forState: .Selected)
-        
+        self.mainLabel.alpha = 0
+        self.secondaryLabel.alpha = 0
         UIView.animateWithDuration(3.0, animations: {
-            self.mainLabel.alpha = 0
-            self.secondaryLabel.alpha = 0
+           
             self.orderButtonCenter.constant += self.view.frame.height / 2
             self.view.layoutIfNeeded()
 
@@ -205,7 +212,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         self.orderButton.selected = false
         self.orderButton.setImage(UIImage(named: "Down"), forState: .Normal)
         
-        UIView.animateWithDuration(3.0, animations: {
+        UIView.animateWithDuration(1.5, animations: {
             self.mainLabel.alpha = 1
             self.secondaryLabel.alpha = 1
             self.orderButtonCenter.constant = 0
@@ -261,7 +268,13 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         task.resume()
     }
     
+    func displayDriverArrived(){
+        self.performSegueWithIdentifier("DriverArrived", sender: self)
+    }
     
+    @IBAction func unwind(segue: UIStoryboardSegue){
+    
+    }
     
     
 }

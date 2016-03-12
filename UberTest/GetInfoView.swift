@@ -54,7 +54,6 @@ class GetInfoView: UIViewController, UITextFieldDelegate, MFMailComposeViewContr
         
         }
         else{
-            print("STOPPING")
             speechHandler.stopListening()
             buttonBackground.layer.removeAllAnimations()
             buttonBackground.hidden = true
@@ -64,8 +63,13 @@ class GetInfoView: UIViewController, UITextFieldDelegate, MFMailComposeViewContr
         }
     }
     
+    var frameOrigin:CGFloat!
+    
     
     override func viewDidLoad() {
+        
+        frameOrigin = self.view.frame.origin.y
+        
         speechHandler.startSpeechHandler()
         
         buttonBackground.hidden = true
@@ -81,15 +85,18 @@ class GetInfoView: UIViewController, UITextFieldDelegate, MFMailComposeViewContr
         birthdayTextField.delegate = self
         allergiesTextField.delegate = self
         medicationsTextField.delegate = self
-        CGRectMake(0, 0, 0, 0)
-        let dummyView = UIView(frame: CGRectMake(0, 0, 0, 0))
+
+        /* let dummyView = UIView(frame: CGRectMake(0, 0, 0, 0))
 
         nameTextField.inputView = dummyView
         birthdayTextField.inputView = dummyView
         allergiesTextField.inputView = dummyView
         birthdayTextField.inputView = dummyView
-        
+        */
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("heardSpeech"), name: "NotificationIdentifier", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil)
+
     }
     
     func heardSpeech(){
@@ -130,6 +137,27 @@ class GetInfoView: UIViewController, UITextFieldDelegate, MFMailComposeViewContr
         }
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        nameTextField.resignFirstResponder()
+        birthdayTextField.resignFirstResponder()
+        allergiesTextField.resignFirstResponder()
+        medicationsTextField.resignFirstResponder()
+
+    }
+    
+    
+    func keyboardWillShow(sender: NSNotification) {
+        
+        if self.view.frame.origin.y >= 0 {
+            self.view.frame.origin.y -= 100
+        }
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        if self.view.frame.origin.y < 0{
+            self.view.frame.origin.y += 100
+        }
+    }
     
     
     func switchTextField(){

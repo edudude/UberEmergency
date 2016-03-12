@@ -47,21 +47,14 @@ class UberHandler {
             "start_longitude" : startLng,
             "end_latitude" : endLat,
             "end_longitude" : endLng]
-        /*
-        let params:[String: AnyObject] = [
-            "product_id" : "6e731b60-2994-4f68-b586-74c077573bbd",
-            "start_latitude" : 21.3088621,
-            "start_longitude" : -157.8086632,
-            "end_latitude" : 21.7088621,
-            "end_longitude" : -157.8086632]
-        */
+   
         
         let urlPath = "https://sandbox-api.uber.com/v1/requests"
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
         
-        //guard let endpoint = NSURL(string: urlPath) else { print("Error creating endpoint");return }
+        guard let endpoint = NSURL(string: urlPath) else { print("Error creating endpoint");return }
         
         let request = appDelegate.oauth.request(forURL: NSURL(string:urlPath)!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
@@ -99,7 +92,7 @@ class UberHandler {
     
     func getProducts(atLat lat: Double, atLon lon: Double, completion: ((
         String) -> Void)){
-        let urlPath = "https://api.uber.com/v1/products?latitude=\(lat)&longitude=\(lon)"
+        var urlPath = "https://api.uber.com/v1/products?latitude=\(lat)&longitude=\(lon)"
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
