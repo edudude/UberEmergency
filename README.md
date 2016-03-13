@@ -13,17 +13,17 @@ Submission for SIUE eHacks 2016.
 
 
 ## Screen Shots
-<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/screen1.png" width="180" />
+<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/Screen1.png" width="180" />
 
 
-<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/screen2.png" width="180" />
+<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/Screen2.png" width="180" />
 
 
-<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/screen3.png" width="180" />
+<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/Screen3.png" width="180" />
 
 
-<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/screen4.png" width="180" />
+<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/Screen4.png" width="180" />
 
 
-<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/screen5.png" width="180" />
+<img src="https://raw.github.com/khaptonstall/UberEmergency/master/Screens/Screen5.png" width="180" />
 
