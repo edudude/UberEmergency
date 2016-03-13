@@ -3,15 +3,17 @@ import UIKit
 import p2_OAuth2
 import CoreLocation
 import GoogleMaps
-
+import MessageUI
 
 class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var access_token:String?
     let locationManager = CLLocationManager()
     var loc:CLLocationCoordinate2D?
     var uberHandler = UberHandler()
-    
+    let coreDataHandler = CoreDataHandler()
+    var contactNumber:String?
     
     @IBOutlet weak var orderButtonCenter: NSLayoutConstraint!
     
@@ -45,7 +47,6 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
                             let destinationLon:Double = hospitalDic["Lon"] as!  Double
                             
                             let marker = GMSMarker()
-                            marker.icon = UIImage(named: "Hospital")
                             marker.title = hospitalName
                             marker.position = CLLocationCoordinate2D(latitude: destinationLat, longitude: destinationLon)
                             marker.map = self.mapView
@@ -54,6 +55,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
                             // Step 3: Order Uber
                             self.uberHandler.makeRequest(productID, startLat: currLoc.latitude, startLng: currLoc.longitude, endLat: destinationLat, endLng: destinationLon) { _ in
                                 
+                                self.sendMessage(hospitalName)
                                 
                                 let driver: [String: AnyObject] = self.uberHandler.createRandomDriver()
                                 let name = driver["Name"] as! String
@@ -64,8 +66,8 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
                                     self.mainLabel.text = "\(name) is on their way!"
                                     self.secondaryLabel.text = "\(hospitalName)\n Plate Numer: \(plate)\n ETA: \(eta) mins"
                                     
-                                    self.uberLat = self.loc!.latitude + 0.01
-                                    self.uberLon = self.loc!.longitude + 0.01
+                                    self.uberLat = self.loc!.latitude + 0.1
+                                    self.uberLon = self.loc!.longitude + 0.1
                                     
                                     NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "enlargeMapView", userInfo: nil, repeats: false)
                                     
@@ -99,10 +101,14 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     }
     
     
- 
-      
+  
     
-    
+    override func viewDidAppear(animated: Bool) {
+        let contact = coreDataHandler.retrieveSingleObject(forEntityName: "Contact")
+        if contact != nil{
+            contactNumber = contact!.valueForKey("number") as! String
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,10 +146,25 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
         let micBarButton = UIBarButtonItem()
         micBarButton.customView = micButton
         self.navigationItem.rightBarButtonItem = micBarButton
+        
+        // Setup contact button
+        let contactButton = UIButton()
+        contactButton.setImage(UIImage(named: "Contact"), forState: .Normal)
+        contactButton.frame = CGRectMake(0, 0, 30, 30)
+        contactButton.addTarget(self, action: "onContactPress", forControlEvents: .TouchUpInside)
+        
+        let contactBarButton = UIBarButtonItem()
+        contactBarButton.customView = contactButton
+        self.navigationItem.leftBarButtonItem = contactBarButton
+        
     }
     
     func onMicPress(){
         self.performSegueWithIdentifier("ShowInfoPage", sender: self)
+    }
+    
+    func onContactPress(){
+        self.performSegueWithIdentifier("EContact", sender: self)
     }
 
     var cameraSet = false

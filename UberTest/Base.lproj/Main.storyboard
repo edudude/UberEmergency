@@ -150,6 +150,90 @@
             </objects>
             <point key="canvasLocation" x="1665" y="-446"/>
         </scene>
+        <!-- -->
+        <scene sceneID="SLe-jw-Ebn">
+            <objects>
+                <viewController title=" " id="o5R-95-YAH" customClass="EContactView" customModule="UberTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KYN-bN-Fxz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gnv-w8-R01"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gWp-Ey-xlp">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set an emergency contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzu-WQ-1Sd">
+                                <rect key="frame" x="20" y="50" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJa-y9-McG">
+                                <rect key="frame" x="20" y="80" width="560" height="33.5"/>
+                                <string key="text">We’ll send your contact the hospital address for
+you when you order your Uber</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" image="EContactBG" translatesAutoresizingMaskIntoConstraints="NO" id="IUu-Ar-z1Q">
+                                <rect key="frame" x="0.0" y="133" width="600" height="402"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" background="TextBG" translatesAutoresizingMaskIntoConstraints="NO" id="yn7-z9-lKe">
+                                <rect key="frame" x="20" y="213.5" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="AfL-Lv-pzp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" background="TextBG" translatesAutoresizingMaskIntoConstraints="NO" id="f7T-sv-duG">
+                                <rect key="frame" x="20" y="283.5" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="9eh-SW-wW8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’ll take care of the rest :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rZ-e6-58c">
+                                <rect key="frame" x="20" y="417.5" width="560" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="f7T-sv-duG" secondAttribute="trailing" id="7TS-UV-0gU"/>
+                            <constraint firstItem="7rZ-e6-58c" firstAttribute="top" secondItem="f7T-sv-duG" secondAttribute="bottom" constant="90" id="7U0-9L-PcI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IUu-Ar-z1Q" secondAttribute="trailing" constant="-20" id="APN-57-4Ky"/>
+                            <constraint firstItem="7rZ-e6-58c" firstAttribute="leading" secondItem="gWp-Ey-xlp" secondAttribute="leadingMargin" id="CtH-CB-3hU"/>
+                            <constraint firstItem="wzu-WQ-1Sd" firstAttribute="leading" secondItem="gWp-Ey-xlp" secondAttribute="leadingMargin" id="RVw-Kj-3RF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yn7-z9-lKe" secondAttribute="trailing" id="SQm-Mg-K71"/>
+                            <constraint firstItem="yn7-z9-lKe" firstAttribute="top" secondItem="lJa-y9-McG" secondAttribute="bottom" constant="100" id="SZk-Lv-hzG"/>
+                            <constraint firstItem="IUu-Ar-z1Q" firstAttribute="leading" secondItem="gWp-Ey-xlp" secondAttribute="leadingMargin" constant="-20" id="TxF-ki-VGr"/>
+                            <constraint firstItem="lJa-y9-McG" firstAttribute="leading" secondItem="gWp-Ey-xlp" secondAttribute="leadingMargin" id="WDM-Ha-bdp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lJa-y9-McG" secondAttribute="trailing" id="Whf-DH-6AE"/>
+                            <constraint firstItem="f7T-sv-duG" firstAttribute="leading" secondItem="gWp-Ey-xlp" secondAttribute="leadingMargin" id="Z5W-ww-JPB"/>
+                            <constraint firstItem="lJa-y9-McG" firstAttribute="top" secondItem="wzu-WQ-1Sd" secondAttribute="bottom" constant="10" id="cBg-UP-xHg"/>
+                            <constraint firstItem="IUu-Ar-z1Q" firstAttribute="top" secondItem="lJa-y9-McG" secondAttribute="bottom" constant="30" id="dN1-dE-1gO"/>
+                            <constraint firstItem="Gnv-w8-R01" firstAttribute="top" secondItem="IUu-Ar-z1Q" secondAttribute="bottom" id="dPP-6Y-cjM"/>
+                            <constraint firstItem="wzu-WQ-1Sd" firstAttribute="top" secondItem="KYN-bN-Fxz" secondAttribute="bottom" constant="50" id="e0V-7F-AHB"/>
+                            <constraint firstItem="f7T-sv-duG" firstAttribute="top" secondItem="yn7-z9-lKe" secondAttribute="bottom" constant="26" id="gSD-dV-Am2"/>
+                            <constraint firstItem="yn7-z9-lKe" firstAttribute="leading" secondItem="gWp-Ey-xlp" secondAttribute="leadingMargin" id="jCL-us-bFe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7rZ-e6-58c" secondAttribute="trailing" id="pdk-mj-t2B"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wzu-WQ-1Sd" secondAttribute="trailing" id="ygL-pU-mHo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="yn7-z9-lKe" id="Trf-jb-SZ8"/>
+                        <outlet property="phoneTextField" destination="f7T-sv-duG" id="VvK-YF-oWv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BKf-0e-9ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973" y="-1119"/>
+        </scene>
         <!--Main View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -238,6 +322,7 @@
                         <outlet property="secondaryLabel" destination="v85-vu-otE" id="gR7-IA-V7d"/>
                         <segue destination="vX2-Bd-1eW" kind="show" identifier="ShowInfoPage" id="9tP-YM-BoC"/>
                         <segue destination="WdQ-MJ-JUe" kind="presentation" identifier="DriverArrived" modalPresentationStyle="overCurrentContext" id="qug-BF-TlR"/>
+                        <segue destination="o5R-95-YAH" kind="show" identifier="EContact" id="b7b-JI-6ps"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -336,7 +421,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFd-oP-IS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="h4M-4Y-VYE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="314"/>
+            <point key="canvasLocation" x="1049" y="356"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QA2-o8-Acr">
@@ -358,6 +443,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="EContactBG" width="375" height="487"/>
         <image name="InfoBG" width="375" height="487"/>
         <image name="Mic-1" width="100" height="66"/>
         <image name="Order" width="133" height="133"/>
