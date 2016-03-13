@@ -46,10 +46,13 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
                             let destinationLat:Double = hospitalDic["Lat"] as! Double
                             let destinationLon:Double = hospitalDic["Lon"] as!  Double
                             
-                            let marker = GMSMarker()
-                            marker.title = hospitalName
-                            marker.position = CLLocationCoordinate2D(latitude: destinationLat, longitude: destinationLon)
-                            marker.map = self.mapView
+                            dispatch_async(dispatch_get_main_queue()){
+                                let marker = GMSMarker()
+                                marker.title = hospitalName
+                                marker.position = CLLocationCoordinate2D(latitude: destinationLat, longitude: destinationLon)
+                                marker.map = self.mapView
+
+                            }
                             
 
                             // Step 3: Order Uber
@@ -204,8 +207,8 @@ class MainView: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
             let camera = mapView.cameraForBounds(bounds, insets:UIEdgeInsetsZero)
             self.mapView.camera = camera!
             
-            uberLat -= 0.001
-            uberLon -= 0.001
+            uberLat -= 0.003
+            uberLon -= 0.003
 
         }
         else{

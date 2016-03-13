@@ -24,6 +24,12 @@ class EContactView: UIViewController, UITextFieldDelegate{
         
         
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "onSave"), animated: true)
+        
+        let contact = coreDataHandler.retrieveSingleObject(forEntityName: "Contact")
+        if contact != nil{
+            nameTextField.text = contact!.valueForKey("name") as! String
+            phoneTextField.text = contact!.valueForKey("number") as! String
+        }
 
     }
     
